@@ -3,8 +3,8 @@ from django.http import HttpResponse
 
 
 def projects(request):
-    return HttpResponse("Here are the list of projects")
+    return render(request, 'projects.html')
 
 
 def project(request, pk):
-    return HttpResponse(f"Single Project {pk}")
+    return render(request, 'single-project.html')
