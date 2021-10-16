@@ -1,17 +1,25 @@
+from django.core import paginator
 from django.core.files.base import ContentFile
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
-
+from django.db.models import Q
 from .models import Project, Review, Tag
 from .forms import ProjectForm
+from .utils import searchProject, paginateProjects
 
 
 def projects(request):
-    projects = Project.objects.all()
+
+    projects, search_query = searchProject(request)
+
+    custom_range, projects = paginateProjects(request, projects, 6)
 
     context = {
-        'projects': projects
+        'projects': projects,
+        'search_query': search_query,
+
+        'custom_range': custom_range,
     }
     return render(request, 'projects/projects.html', context)
 
@@ -21,7 +29,7 @@ def project(request, pk):
     return render(request, 'projects/single-project.html', {'project': project})
 
 
-@login_required(login_url='login')
+@ login_required(login_url='login')
 def create_project(request):
     profile = request.user.profile
     form = ProjectForm()
@@ -32,14 +40,14 @@ def create_project(request):
             project = form.save(commit=False)
             project.owner = profile
             project.save()
-            return redirect('projects')
+            return redirect('account')
     context = {
         'form': form,
     }
     return render(request, 'projects/project-form.html', context)
 
 
-@login_required(login_url='login')
+@ login_required(login_url='login')
 def update_project(request, pk):
     profile = request.user.profile
     project = profile.project_set.get(id=pk)
@@ -56,7 +64,7 @@ def update_project(request, pk):
     return render(request, 'projects/project-form.html', context)
 
 
-@login_required(login_url='login')
+@ login_required(login_url='login')
 def delete_project(request, pk):
     profile = request.user.profile
     project = profile.project_set.get(id=pk)
