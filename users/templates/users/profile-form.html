@@ -1,14 +1,20 @@
 {% extends 'main.html' %} {% block content %}
 
+<!-- Main Section -->
 <main class="formPage my-xl">
   <div class="content-box">
     <div class="formWrapper">
-      <a class="backButton" href="{% url 'account' %}"
+      <a class="backButton" href="{{request.GET.next}}"
         ><i class="im im-angle-left"></i
       ></a>
       <br />
 
-      <form class="form" method="POST" enctype="multipart/form-data">
+      <form
+        class="form"
+        action="{% url 'edit-account' %}"
+        method="POST"
+        enctype="multipart/form-data"
+      >
         {% csrf_token %}
         <!-- Input:Text -->
 
@@ -29,4 +35,5 @@
     </div>
   </div>
 </main>
+
 {% endblock content %}
