@@ -25,7 +25,7 @@ def get_routes(request):
 def get_projects(request):
     projects = Project.objects.all()
     serializer = ProjectSerializer(projects, many=True)
-    print(serializer)
+    # print(serializer)
     return Response(serializer.data)
 
 
@@ -33,5 +33,5 @@ def get_projects(request):
 def get_project(request, pk):
     project = Project.objects.get(id=pk)
     serializer = ProjectSerializer(project, many=False)
-    print(serializer)
+    # print(serializer)
     return Response(serializer.data)
