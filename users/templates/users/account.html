@@ -118,7 +118,9 @@
               /></a>
             </td>
             <td class="settings__tableInfo">
-              <a href="{% url 'project' project.id %}">{{project.name}}</a>
+              <a href="{% url 'project' project.id %}" style="font-weight: bold"
+                >{{project.title}}</a
+              >
               <p>{{project.description}}</p>
             </td>
             <td class="settings__tableActions">

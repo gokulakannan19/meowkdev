@@ -39,6 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    "corsheaders",
+
+
     'rest_framework',
 
     'projects.apps.ProjectsConfig',
@@ -47,6 +50,8 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    "corsheaders.middleware.CorsMiddleware",
+
     'whitenoise.middleware.WhiteNoiseMiddleware',
 
     'django.middleware.security.SecurityMiddleware',
@@ -162,7 +167,7 @@ USE_L10N = True
 
 USE_TZ = True
 
-
+CORS_ALLOW_ALL_ORIGINS = True
 # Email configuration
 
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
