@@ -14,7 +14,7 @@
             >
             <img
               class="avatar avatar--xl dev__avatar"
-              src="{{profile.profile_image.url}}"
+              src="{{profile.image_url}}"
             />
             <h2 class="dev__name">{{profile.name}}</h2>
             <p class="dev__title">{{profile.short_intro}}</p>
@@ -22,35 +22,50 @@
             <ul class="dev__social">
               {% if profile.social_github %}
               <li>
-                <a title="Github" href="#" target="_blank"
+                <a
+                  title="Github"
+                  href="{{profile.social_github}}"
+                  target="_blank"
                   ><i class="im im-github"></i
                 ></a>
               </li>
               {% endif %} {% if profile.social_stackoverflow %}
 
               <li>
-                <a title="Stackoverflow" href="#" target="_blank"
+                <a
+                  title="Stackoverflow"
+                  href="{{profile.social_stackoverflow}}"
+                  target="_blank"
                   ><i class="im im-stackoverflow"></i
                 ></a>
               </li>
               {% endif %} {% if profile.social_twitter %}
 
               <li>
-                <a title="Twitter" href="#" target="_blank"
+                <a
+                  title="Twitter"
+                  href="{{profile.social_twitter}}"
+                  target="_blank"
                   ><i class="im im-twitter"></i
                 ></a>
               </li>
               {% endif %} {% if profile.social_linkedin %}
 
               <li>
-                <a title="LinkedIn" href="#" target="_blank"
+                <a
+                  title="LinkedIn"
+                  href="{{profile.social_linkedin}}"
+                  target="_blank"
                   ><i class="im im-linkedin"></i
                 ></a>
               </li>
               {% endif %} {% if profile.social_website %}
 
               <li>
-                <a title="Personal Website" href="#" target="_blank"
+                <a
+                  title="Personal Website"
+                  href="{{profile.social_website}}"
+                  target="_blank"
                   ><i class="im im-globe"></i
                 ></a>
               </li>
@@ -112,9 +127,7 @@
           <tr>
             <td class="settings__thumbnail">
               <a href="{% url 'project' project.id %}"
-                ><img
-                  src="{{project.featured_image.url}}"
-                  alt="Project Thumbnail"
+                ><img src="{{project.image_url}}" alt="Project Thumbnail"
               /></a>
             </td>
             <td class="settings__tableInfo">
