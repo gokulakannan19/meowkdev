@@ -13,6 +13,8 @@ from datetime import timedelta
 
 from pathlib import Path
 import os
+import dj_database_url
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -26,7 +28,8 @@ SECRET_KEY = 'django-insecure-d-#gx1bpmj@2yrop#3*_&xc59nsu=-02o+2za*f0y5#v5tuec=
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+
+ALLOWED_HOSTS = ['meowkdev.herokuapp.com', '127.0.0.1', 'localhost']
 
 
 # Application definition
@@ -203,3 +206,6 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+if os.getcwd == '/app':
+    DEBUG = False
